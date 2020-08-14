@@ -1,0 +1,55 @@
+Laradock
+
+Projeto existente
+
+git submodule add https://github.com/Laradock/laradock.git  "Baixa o laradock. Deverá ser clonado dentro da pasta do projeto."
+
+cp env-example .env  "Criar o .env" 
+
+Escolher o nome e usuário do banco.
+
+docker-compose up -d nginx mysql phpmyadmin "Instala as dependências escolhidas"
+
+docker exec -it laradock-erpcopia_workspace_1 /bin/sh "Inicia o workspace"
+
+// Container
+docker start 2c81be2d7e13 2488a21a1c5d 0589d7de3f72 38ac962a7b51 264e171f18c2 7f921c142848
+
+docker start $(docker ps -a -q)
+
+=====================================================================================================
+
+- docker pull mongo // baixa a imagem do mongo no docker
+- docker run --name mongodb -p 27017:27017 -d mongo  //nome do container ->    	redirecionamento de porta -> a imagem que deseja utilizar, no caso, a que foi baixada.
+
+docker run -i -t ubuntu:18.04 /bin/bash   "Instalar o ubunto no docker"
+
+ctrl d "Encerra o container"
+
+docker ps -a "Mostra os containers existentes"
+
+docker ps "Mostra os containers ativos"
+
+docker attach 5e475d19fdf5  "Inicia o container desejado"
+
+ctrl p + q "Sai do docker sem encerrar"
+
+docker rm $(docker ps -a -q) "Remove todas as instâncias
+
+docker start "id do CONTAINER"
+
+docker start nomeDaImagem
+
+docker stop idDoContainer "Pára um container"
+
+docker stop $(docker ps -a -q) "Pára todos os containers"
+
+docker ps -a // mostra todas as imagens que existem no docker
+docker-compose restart  "Sobe todos os containers novamente"
+
+
+docker-compose build workspace php-fpm  // sobe este container
+
+
+
+  
