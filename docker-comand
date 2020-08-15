@@ -17,7 +17,7 @@ docker start 2c81be2d7e13 2488a21a1c5d 0589d7de3f72 38ac962a7b51 264e171f18c2 7f
 
 docker start $(docker ps -a -q)
 
-======================================================================================================
+=====================================================================================================
 
 - docker pull mongo // baixa a imagem do mongo no docker
 - docker run --name mongodb -p 27017:27017 -d mongo  //nome do container ->    	redirecionamento de porta -> a imagem que deseja utilizar, no caso, a que foi baixada.
