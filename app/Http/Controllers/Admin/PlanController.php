@@ -52,6 +52,13 @@ class PlanController extends Controller
         if(!$plan)
             return redirect()->back();
         
+        if ($plan->details->count() > 0)
+        {
+
+            return redirect()->back()->with('error', 'Existem detalhes vinculados ao plano, portanto, não é possível excluí-lo.');
+        }
+
+
         $plan->delete();
 
         return redirect()->route('plans.index');

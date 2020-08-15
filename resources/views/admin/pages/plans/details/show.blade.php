@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', "Adicionar detalhe ao plano {$plan->name}")
+@section('title', "Detalhes: {$detail->name}")
 
 @section('content_header')
 
@@ -10,21 +10,28 @@
     <li class="breadcrumb-item"><a href="{{ route('plans.index') }}">Planos</a></li>
     <li class="breadcrumb-item"><a href="{{ route('plans.show', $plan->url) }}">{{ $plan->name }}</a></li>
     <li class="breadcrumb-item"><a href="{{ route('details.plan.index', $plan->url) }}">Detalhes</a></li>
-    <li class="breadcrumb-item active"><a href="{{ route('details.plan.create', $plan->url) }}">Criar</a></li>
+    <li class="breadcrumb-item active"><a href="{{ route('details.plan.edit', [$plan->url, $detail->id]) }}">Detalhes</a></li>
 </ol>
 
-<h1>Adicionar novo detalhe ao plano {{ $plan->name }}</h1>
+<h1>Detalhes: {{ $detail->name }}</h1>
 @stop
 
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('details.plan.store', $plan->url) }}" method="post">
+        <ul>
+            <li>
+                <strong>Nome:</strong> {{ $detail->name }}
+            </li>
+        </ul>
+    </div>
+    <div class="card-footer">
+        <form action="{{ route('details.plan.destroy', [$plan->url, $detail->id]) }}" method="POST">
+        @csrf
+        @method('DELETE')
 
-        @include('admin.pages.plans.details._partials.form')
-
+        <button type="submit" class="btn btn-danger">Excluir</button>
         </form>
-
     </div>
 </div>
 @endsection
