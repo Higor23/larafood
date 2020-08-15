@@ -47,7 +47,6 @@ docker stop $(docker ps -a -q) "Pára todos os containers"
 docker ps -a // mostra todas as imagens que existem no docker
 docker-compose restart  "Sobe todos os containers novamente"
 
-
 docker-compose build workspace php-fpm  // sobe este container
 
 
