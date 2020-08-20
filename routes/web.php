@@ -4,7 +4,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->namespace('Admin')->group(function () {
 
-      /**
+    /**
+     *Permissions Profiles
+     */
+    Route::post('profiles/{id}/permissions/store', 'ACL\PermissionProfileController@attachPermissionsProfile')->name('profiles.permissions.attach');
+     Route::get('profiles/{id}/permissions/create', 'ACL\PermissionProfileController@permissionsAvailable')->name('profiles.permissions.available');
+    Route::get('profiles/{id}/permissions', 'ACL\PermissionProfileController@permissions')->name('profiles.permissions');
+    
+    /**
+     * Routes Permissions
+     */
+    Route::any('permissions/search', 'ACL\PermissionController@search')->name('permissions.search');
+    Route::resource('permissions', 'ACL\PermissionController');
+
+    /**
      * Routes Profiles
      */
     Route::any('profiles/search', 'ACL\ProfileController@search')->name('profiles.search');
@@ -20,9 +33,9 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::put('plans/{url}/details/{idDetail}', 'DetailPlanController@update')->name('details.plan.update');
     Route::get('plans/{url}/details/{idDetail}/edit', 'DetailPlanController@edit')->name('details.plan.edit');
     Route::post('plans/{url}/details/store', 'DetailPlanController@store')->name('details.plan.store');
-    
+
     Route::get('plans/{url}/details', 'DetailPlanController@index')->name('details.plan.index');
-    
+
     /**
      * Routes Plans
      */

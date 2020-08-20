@@ -12,10 +12,11 @@ docker-compose up -d nginx mysql phpmyadmin "Instala as dependências escolhidas
 
 docker exec -it laradock-erpcopia_workspace_1 /bin/sh "Inicia o workspace"
 
-// Container
-docker start 2c81be2d7e13 2488a21a1c5d 0589d7de3f72 38ac962a7b51 264e171f18c2 7f921c142848
+
 
 docker start $(docker ps -a -q)
+
+docker exec -it 38ac962a7b51 bash
 
 =====================================================================================================
 

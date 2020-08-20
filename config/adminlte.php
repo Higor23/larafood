@@ -243,6 +243,12 @@ return [
             'icon' => 'fas fa-user-alt',
         ],
 
+        [
+            'text' => 'Permissões',
+            'url' => 'admin/permissions',
+            'icon' => 'fas fa-lock',
+        ],
+
     ],
 
     /*

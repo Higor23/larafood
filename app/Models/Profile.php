@@ -12,8 +12,17 @@ class Profile extends Model
     public function search($filter = null)
     {
         $results = $this->where('name', 'LIKE', "%{$filter}%")
-                        ->orWhere('description', 'LIKE', "%{$filter}%")
-                        ->paginate();
-        return $results;                
-    }   
+            ->orWhere('description', 'LIKE', "%{$filter}%")
+            ->paginate();
+        return $results;
+    }
+
+    /** 
+     * Get Permissions
+     */
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
+    }
 }
