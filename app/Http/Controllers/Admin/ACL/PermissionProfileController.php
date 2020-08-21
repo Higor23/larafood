@@ -39,7 +39,7 @@ class PermissionProfileController extends Controller
             return redirect()->back();
         }
 
-        $permissions = $this->permission->paginate();
+        $permissions = $profile->permissionsAvailable();
 
         return view(
             'admin.pages.profiles.permissions.available',
@@ -60,7 +60,8 @@ class PermissionProfileController extends Controller
                 ->with('info', 'Necessário escolher pelo menos uma permissão.');
         }
 
-        dd($profile->permissions()->attach($request->permissions));
+        $request->permissions;
+        $profile->permissions()->attach($request->permissions);
 
         return redirect()->route('profiles.permissions', $profile->id);
     }

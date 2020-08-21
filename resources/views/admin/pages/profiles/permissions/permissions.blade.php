@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Permissões do Perfil {$profile->name}')
+@section('title', "Permissões do Perfil {$profile->name}")
 
 @section('content_header')
-<h1>Permissões do Perfil <a href="{{ route('profiles.permissions.available', $profile->id) }}" class="btn btn-dark">Adicionar</a></h1>
+<h1>Permissões do Perfil <strong> {{ $profile->name }}  </strong><a href="{{ route('profiles.permissions.available', $profile->id) }}" class="btn btn-dark">Adicionar</a></h1>
 
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
