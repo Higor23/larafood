@@ -1,13 +1,12 @@
 @extends('adminlte::page')
 
-@section('title', "Permissões do Perfil {$profile->name}")
+@section('title', "Perfis da permissão {$permission->name}")
 
 @section('content_header')
-<h1>Permissões do Perfil <strong> {{ $profile->name }}  </strong><a href="{{ route('profiles.permissions.available', $profile->id) }}" class="btn btn-dark">Adicionar</a></h1>
 
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-    <li class="breadcrumb-item" class="active"><a href="{{ route('profiles.index') }}">Perfis</a></li>
+    <li class="breadcrumb-item" class="active"><a href="{{ route('permissions.index') }}">Perfis</a></li>
 </ol>
 @stop
 
@@ -23,9 +22,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($permissions as $permission)
+                @foreach($profiles as $profile)
                 <tr>
-                    <td>{{ $permission->name }}</td>
+                    <td>{{ $profile->name }}</td>
                     <td style="width:150px">
                        
                         <a href="{{ route('profiles.permission.detach', [$profile->id, $permission->id]) }}" class="btn btn-danger">Desvincular</a>
@@ -41,9 +40,9 @@
     </div>
     <div class="card-footer">
         @if (isset($filters))
-        {!! $permissions->appends($filters)->links() !!}
+        {!! $profiles->appends($filters)->links() !!}
         @else
-        {!! $permissions->links() !!}
+        {!! $profiles->links() !!}
         @endif
 
     </div>

@@ -32,18 +32,21 @@ class PermissionProfileController extends Controller
         );
     }
 
-    public function permissionsAvailable($idProfile)
+    public function permissionsAvailable(Request $request, $idProfile)
     {
 
         if (!$profile = $this->profile->find($idProfile)) {
             return redirect()->back();
         }
+        // dd($request->filter);
+        $filters = $request->except('__toker');
+        $request->filter;
 
-        $permissions = $profile->permissionsAvailable();
+        $permissions = $profile->permissionsAvailable($request->filter);
 
         return view(
             'admin.pages.profiles.permissions.available',
-            ['profile' => $profile, 'permissions' => $permissions]
+            ['profile' => $profile, 'permissions' => $permissions, 'filters' => $filters]
         );
     }
 
@@ -65,4 +68,34 @@ class PermissionProfileController extends Controller
 
         return redirect()->route('profiles.permissions', $profile->id);
     }
+
+    public function detachPermissionProfile($idProfile, $idPermission)
+    {   
+        $profile = $this->profile->find($idProfile);
+        $permission = $this->permission->find($idPermission);
+        if (!$profile || !$permission) {
+            return redirect()->back();
+        }
+
+
+        $profile->permissions()->detach($permission);
+
+        return redirect()->route('profiles.permissions', $profile->id);
+    }
+
+    public function profiles($idPermission)
+    {
+        
+        if (!$permission = $this->permission->find($idPermission)) {
+            return redirect()->back();
+        }
+
+        $profiles = $permission->profiles()->paginate();
+
+        return view(
+            'admin.pages.permissions.profiles.profiles',
+            ['profiles' => $profiles, 'permission' => $permission]
+        );
+    }
+
 }
